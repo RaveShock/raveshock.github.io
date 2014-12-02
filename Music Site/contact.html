@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Page Layout Example </title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCyyN9QOPwwt-oVL-kyypEsVbMOFqpTTrk">
+    </script>
+</head>
+<body>
+	<header>
+		<h1> Peanutbutter and JAMZ </h1>
+	</header>
+	<div class = "wrapper">
+	<nav>
+		<ul id = "menu">
+			<li id = "Item1">
+				<a href = "index.html" onmouseover="CloseMenu()"> Home </a>
+			</li>
+			<li id = "Item2">
+				<a href = "writtenReviews.html" onmouseover="OpenMenu('Item2Submenu')"> Reviews </a>
+				<ul id = "Item2Submenu" onmouseover="KeepSubmenu()" onmouseout="CloseMenu()">
+					<li><a href="writtenReviews.html"> Written </a></li>
+					<li><a href="videoReviews.html"> Video </a></li>
+				</ul>
+			</li>
+			<li id = "Item3">
+				<a href = "links.html"> Links </a>
+			</li>
+			<li id = "Item4">	
+				<a href = "aboutUs.html" onmouseover="OpenMenu('Item4Submenu')"> About Us </a>
+				<ul id = "Item4Submenu" onmouseover="KeepSubmenu()" onmouseout="CloseMenu()">
+					<li><a href = "aboutUs.html"> Who We Are </a></li>
+					<li><a href = "contact.html"> Contact Us </a></li>
+				</ul>
+			</li>
+		</ul>	
+	</nav>
+	<div id = "content">
+	
+	<br><br><br>
+	
+	<a href="tel:555-555-1212"> CALL US: 555-555-1212</a>
+	<br>
+	<a href="email:dballachino@comcast.net"> EMAAIL US: dballachino@comcast.net</a>
+	
+	<br>
+	
+	<article class = "main">
+		<div id="googleMap" style="width:auto;height:380px;">
+		</div>
+	</article>
+	</div>  
+	</div>
+	
+	<script>
+	var Item; //Hold current open menu item
+	var Timer;	//Hold timeout value
+	document.onclick=CloseMenu; //Hide the menu after clicking outside it
+	
+	/*function initialize()
+	{
+		var mapProp = {
+			center:new google.maps.LatLng(44.4758, -73.2119),
+			zoom:15,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+		
+	}*/
+	var myCenter=new google.maps.LatLng(44.4758, -73.2119);
+
+	function initialize()
+	{
+		var mapProp = {
+		center:myCenter,
+		zoom:15,
+		mapTypeId:google.maps.MapTypeId.ROADMAP
+		};
+
+		var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+		var marker=new google.maps.Marker({
+			position:myCenter, animation:google.maps.Animation.BOUNCE
+		});
+
+		marker.setMap(map);
+	}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+		
+	
+	
+	function loadScript()
+	{
+		var script = document.createElement("script");
+		script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyCyyN9QOPwwt-oVL-kyypEsVbMOFqpTTrk&sensor=false&callback=initialize"; document.body.appendChild(script);
+	}
+
+	window.onload = loadScript;
+	
+	function OpenMenu(Menu)
+	{
+		//if open, close it
+		if(Item)
+		{
+			Item.style.visibility="hidden";
+		}
+		//setup new menu item
+		Item=document.getElementById(Menu);
+		Item.style.visibility="visible";
+	}
+	
+	function CloseMenu()
+	{
+		//setup a timer to close menu
+		Timer = window.setTimeout(PerformClose, 500);
+	}
+	
+	function PerformClose()
+	{
+		if(Item)
+		{
+			Item.style.visibility="hidden";
+		}
+	}
+	
+	function KeepSubmenu()
+	{
+	//reset the timer
+		window.clearTimeout(Timer);
+	}
+	</script>
+</body>
+</html>

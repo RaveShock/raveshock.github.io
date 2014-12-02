@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Peanutbutter and JAMZ </title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1> Peanutbutter and JAMZ </h1>
+	</header>
+	<div class = "wrapper">
+		<nav>
+			<ul id = "menu">
+				<li id = "Item1">
+					<a href = "index.html" onmouseover="CloseMenu()"> Home </a>
+				</li>
+				<li id = "Item2">
+					<a href = "writtenReviews.html" onmouseover="OpenMenu('Item2Submenu')"> Reviews </a>
+					<ul id = "Item2Submenu" onmouseover="KeepSubmenu()" onmouseout="CloseMenu()">
+						<li><a href="writtenReviews.html"> Written </a></li>
+						<li><a href="videoReviews.html"> Video </a></li>
+					</ul>
+				</li>
+				<li id = "Item3">
+					<a href = "links.html"> Links </a>
+				</li>
+				<li id = "Item4">	
+					<a href = "aboutUs.html" onmouseover="OpenMenu('Item4Submenu')"> About Us </a>
+					<ul id = "Item4Submenu" onmouseover="KeepSubmenu()" onmouseout="CloseMenu()">
+						<li><a href = "aboutUs.html"> Who We Are </a></li>
+						<li><a href = "contact.html"> Contact Us </a></li>
+					</ul>
+				</li>
+			</ul>	
+		</nav>
+		<div id = "content">
+		<div class="post">
+			<img src="Will.jpg" class="selfies" alt="Will Vafiades">
+			<h3> Will Vafiades</h3>
+			<p>Will attends Champlain College and is a producer, singer, and music enthusiast.<br>
+			He is currently studying computer science and wishes to apply that knowledge<br>
+			to music software in the future, but for now he is running this site with his<br>
+			Co-Owner Derek. </p>
+		</div>
+		<br>
+		<br>
+		<div class = "post">
+			<img src="Derek.jpg" class="selfies" alt="Derek Ballachino">
+			<h3> Derek Ballachino </h3>
+			<p> Derek is currently a student at Champlain College where he studies computer science <br>
+			He enjoys long walks on the beach and ice-cream Sundays. He is exiting to be working on this 
+			project with Will. </p>
+		</div>
+	</div>
+	</div>
+	<footer>
+		<table>
+			<tr>
+				<td> Copyright 2014 </td>
+			</tr>
+		</table>
+	</footer>
+<script>
+	var Item; //Hold current open menu item
+	var Timer;	//Hold timeout value
+	document.onclick=CloseMenu; //Hide the menu after clicking outside it
+	
+	function OpenMenu(Menu)
+	{
+		//if open, close it
+		if(Item)
+		{
+			Item.style.visibility="hidden";
+		}
+		//setup new menu item
+		Item=document.getElementById(Menu);
+		Item.style.visibility="visible";
+	}
+	
+	function CloseMenu()
+	{
+		//setup a timer to close menu
+		Timer = window.setTimeout(PerformClose, 500);
+	}
+	
+	function PerformClose()
+	{
+		if(Item)
+		{
+			Item.style.visibility="hidden";
+		}
+	}
+	
+	function KeepSubmenu()
+	{
+	//reset the timer
+		window.clearTimeout(Timer);
+	}
+	</script>
+</body>
+</html>

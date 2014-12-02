@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Peanutbutter and JAMZ </title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1> Peanutbutter and JAMZ </h1>
+	</header>
+	<div class = "wrapper">
+	<nav>
+		<ul id = "menu">
+			<li id = "Item1">
+				<a href = "index.html" onmouseover="CloseMenu()"> Home </a>
+			</li>
+			<li id = "Item2">
+				<a href = "writtenReviews.html" onmouseover="OpenMenu('Item2Submenu')"> Reviews </a>
+				<ul id = "Item2Submenu" onmouseover="KeepSubmenu()" onmouseout="CloseMenu()">
+					<li><a href="writtenReviews.html"> Written </a></li>
+					<li><a href="videoReviews.html"> Video </a></li>
+				</ul>
+			</li>
+			<li id = "Item3">
+				<a href = "links.html"> Links </a>
+			</li>
+			<li id = "Item4">	
+				<a href = "aboutUs.html" onmouseover="OpenMenu('Item4Submenu')"> About Us </a>
+				<ul id = "Item4Submenu" onmouseover="KeepSubmenu()" onmouseout="CloseMenu()">
+					<li><a href = "aboutUs.html"> Who We Are </a></li>
+					<li><a href = "contact.html"> Contact Us </a></li>
+				</ul>
+			</li>
+		</ul>	
+	</nav>
+	<div id = "content">
+		<div class="post">
+			<h3>Run the Jewels - Run the Jewels 2 (Video Review) </h3>
+			<iframe class = "youtube" src="http://www.youtube.com/embed/oiNIJAQWUbY" allowfullscreen></iframe>
+		</div>
+		<br>
+		<br>
+	</div>
+	</div>
+	<footer>
+		<table>
+			<tr>
+				<td> Copyright 2014 </td>
+			</tr>
+		</table>
+	</footer>
+	<script>
+	var Item; //Hold current open menu item
+	var Timer;	//Hold timeout value
+	document.onclick=CloseMenu; //Hide the menu after clicking outside it
+	
+	function OpenMenu(Menu)
+	{
+		//if open, close it
+		if(Item)
+		{
+			Item.style.visibility="hidden";
+		}
+		//setup new menu item
+		Item=document.getElementById(Menu);
+		Item.style.visibility="visible";
+	}
+	
+	function CloseMenu()
+	{
+		//setup a timer to close menu
+		Timer = window.setTimeout(PerformClose, 500);
+	}
+	
+	function PerformClose()
+	{
+		if(Item)
+		{
+			Item.style.visibility="hidden";
+		}
+	}
+	
+	function KeepSubmenu()
+	{
+	//reset the timer
+		window.clearTimeout(Timer);
+	}
+	</script>
+</body>
+</html>
